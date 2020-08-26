@@ -3,82 +3,70 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Hotel;
 
 class HotelsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //
+    public function getAllHotels()
     {
-        //
+         $hotels = Hotel::get()->toJson(JSON_PRETTY_PRINT);
+        return response($hotels, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getHotel($id)
     {
-        //
+        if (Hotel::where('id', $id)->exists()) {
+        $hotel = Hotel::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+        return response($hotel, 200);
+      } else {
+        return response()->json([
+          "message" => "hotel not found"
+        ], 404);
+      }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function createHotel()
     {
-        //
+        //validate new hotel
+         $request->validate([
+           'hotel_name'=>'required',
+                'description'=>'required',
+                'price'=>'required|numeric'  
+            ]);
+         $formdata = array(
+            'hotel_name'=>$request->hotel_name,
+            'description'=>$request->description,
+            'price'=>$request->price
+            );
+         Hotel::create($formdata);
+          return response()->json([
+            "message" => "Hotel created"
+        ], 200);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function updateHotel(Request $request, $id)
     {
         //
-    }
+        $hotel= Hotel::whereid($id)->firstOrFail();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $request->validate([
+            'hotel_name'=>'required',
+            'description'=>'required',
+            'price'=>'required|numeric' 
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $hotel->hotel_name = $request->get('hotel_name');
+        $hotel->description = $request->get('description');
+        $hotel->price = $request->get('price');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+          return response()->json([
+            "message" => "hotel updated successfully"
+        ], 200);
+
     }
+    
+
 }
