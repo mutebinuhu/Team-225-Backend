@@ -24,7 +24,16 @@ Route::get('hotels/{id}', 'HotelsController@getHotel');
 Route::post('hotels', 'HotelsController@createHotel');
 Route::put('hotels/{id}', 'HotelsController@updateHotel');
 
-/*Route::get('hotels/show/{id}', 'HotelsController@show');
-Route::post('hotels/create', 'HotelsController@store');
-Route::put('hotels/{id}', 'HotelsController@update');
-Route::delete('hotels/{id}','HotelsController@delete');*/
+
+
+// auth routes
+Route::group(['prefix' => 'auth'], function() {
+    Route::post('/register', 'API\RegisterController@register');
+    Route::post('/login', 'API\LoginController@login');
+});
+
+// Protected routes
+Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
+    Route::get('/logout', 'API\LogoutController@logout');
+});
+
