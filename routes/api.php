@@ -18,16 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//create hotels routes
-
-Route::get('hotels', 'HotelsController@getAllHotels');
-Route::get('hotels/{id}', 'HotelsController@getHotel');
-Route::post('hotels', 'HotelsController@createHotel');
-Route::put('hotels/{id}', 'HotelsController@updateHotel');
-Route::delete('hotels/{id}','HotelsController@deleteHotel');
-
-
-
 
 // auth routes
 Route::group(['prefix' => 'auth'], function() {
@@ -38,6 +28,15 @@ Route::group(['prefix' => 'auth'], function() {
 // Protected routes
 Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
     Route::get('/logout', 'API\LogoutController@logout');
+});
+
+//hotels crud
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('hotels', 'HotelsController@getAllHotels');
+	Route::get('hotels/{id}', 'HotelsController@getHotel');
+	Route::post('hotels', 'HotelsController@createHotel');
+	Route::put('hotels/{id}', 'HotelsController@updateHotel');
+	Route::delete('hotels/{id}','HotelsController@deleteHotel');
 });
 
 
