@@ -14,16 +14,11 @@ class HotelsController extends Controller
         return response($hotels, 200);
     }
 
-    public function getHotel($id)
+    public function getHotel($hotelid)
     {
-        if (Hotel::where('id', $id)->exists()) {
-        $hotel = Hotel::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-        return response($hotel, 200);
-      } else {
-        return response()->json([
-          "message" => "hotel not found"
-        ], 404);
-      }
+
+      $hotel = Hotel::whereid($hotelid)->firstOrFail();
+      return $hotel->toJson(JSON_PRETTY_PRINT);
     }
 
 
@@ -40,19 +35,19 @@ class HotelsController extends Controller
             'description'=>$request->description,
             'price'=>$request->price
             );
-         if (Hotel::create($formdata)) {
-              return response()->json([
+         Hotel::create($formdata);
+        return response()->json([
             "message" => "Hotel created"
         ], 200);
-         }
+        
          
 
     }
 
-    public function updateHotel(Request $request, $id)
+    public function updateHotel(Request $request, $hotelid)
     {
         //
-        $hotel= Hotel::whereid($id)->firstOrFail();
+        $hotel = Hotel::whereid($hotelid)->firstOrFail();
 
         $request->validate([
             'hotel_name'=>'required',
@@ -64,17 +59,15 @@ class HotelsController extends Controller
         $hotel->description = $request->get('description');
         $hotel->price = $request->get('price');
         $hotel->save();
-
-
-          return response()->json([
+        return response()->json([
             "message" => "hotel updated successfully"
         ], 200);
 
     }
-    public function deleteHotel(Request $request, $id)
+    public function deleteHotel(Request $request, $hotelid)
     {
-         $hotel = Hotel::findOrFail($id);
-        $hotel->delete();
+         $hotel = Hotel::findOrFail($hotelid);
+         $hotel->delete();
 
         return response()->json([
             "message" => "hotel deleted"
