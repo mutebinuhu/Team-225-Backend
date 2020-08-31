@@ -14,11 +14,17 @@ class HotelsController extends Controller
         return response($hotels, 200);
     }
 
-    public function getHotel($hotelid)
-    {
 
-      $hotel = Hotel::whereid($hotelid)->firstOrFail();
-      return $hotel->toJson(JSON_PRETTY_PRINT);
+    public function getHotel($id)
+    {
+        if (Hotel::where('id', $id)->exists()) {
+        $hotel = Hotel::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+        return response($hotel, 200);
+      } else {
+        return response()->json([
+          "message" => "hotel not found"
+        ], 404);
+      }
     }
 
 
@@ -35,11 +41,13 @@ class HotelsController extends Controller
             'description'=>$request->description,
             'price'=>$request->price
             );
+
          Hotel::create($formdata);
         return response()->json([
             "message" => "Hotel created"
         ], 200);
         
+         
          
 
     }
@@ -48,7 +56,6 @@ class HotelsController extends Controller
     {
         //
         $hotel = Hotel::whereid($hotelid)->firstOrFail();
-
         $request->validate([
             'hotel_name'=>'required',
             'description'=>'required',
@@ -64,6 +71,7 @@ class HotelsController extends Controller
         ], 200);
 
     }
+    
     public function deleteHotel(Request $request, $hotelid)
     {
          $hotel = Hotel::findOrFail($hotelid);
