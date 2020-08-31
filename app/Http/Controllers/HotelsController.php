@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
 use \Validator;
 use App\Hotel;
 
@@ -12,7 +11,7 @@ use App\Hotel;
 
 class HotelsController extends Controller
 {
-    //
+    //get all hotels
     public function getAllHotels()
     {
         try {
@@ -24,10 +23,16 @@ class HotelsController extends Controller
              ]);
         } catch (\Exception $e) {
             Log::error('An error occurred while loading hotels' .$e->getMessage());
+            return response()->json([
+                'success'=>false,
+                'data'=>[
+                    'errors'=>'Failed to load hotels, try again'
+                ]
+            ], 500);
         }
     }
 
-
+    //get a single hotel
     public function getHotel($hotelid)
     {
 
@@ -39,11 +44,17 @@ class HotelsController extends Controller
           ]);
       } catch (Exception $e) {
           Log::error('An error occurred while loading hotel'. $e->getMessage());
+          return response()->json([
+                'success'=>false,
+                'data'=>[
+                    'errors'=>'Displaying hotel failed please try again'
+                ]
+            ], 500);
       }
     }
 
 
-
+    //create a new hotel
     public function createHotel(Request $request)
     {
        try {
@@ -80,13 +91,20 @@ class HotelsController extends Controller
         ]);
        } catch (\Exception $e) {
            Log::error('An error occurred while creating hotel'.$e->getMessage());
+           return response()->json([
+                'success'=>false,
+                'data'=>[
+                    'errors'=>'Creating hotel failed please try again'
+                ]
+            ], 500);
        }
         
     }
 
+    //update hotel
     public function updateHotel(Request $request, $hotelid)
     {
-        //
+     
         try {
             $hotel = Hotel::whereid($hotelid)->firstOrFail();
             $validatedData = Validator::make($request->all(), [
@@ -117,9 +135,16 @@ class HotelsController extends Controller
             
         } catch (\Exception $e) {
             Log::error('An error occured while updating hotel'. $e->getMessage());
+            return response()->json([
+                'success'=>false,
+                'data'=>[
+                    'errors'=>'Updating hotel failed please try again'
+                ]
+            ], 500);
         }
 
     }
+    //delete hotel
     public function deleteHotel(Request $request, $hotelid)
     {
         try {
@@ -134,6 +159,12 @@ class HotelsController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error('An error occured while deleting hotel' .$e->getMessage());
+            return response()->json([
+                'success'=>false,
+                'data'=>[
+                    'errors'=>'Deleting hotel failed please try again'
+                ]
+            ], 500);
         }
     }
     
