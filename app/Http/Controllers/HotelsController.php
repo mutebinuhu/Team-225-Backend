@@ -50,6 +50,9 @@ class HotelsController extends Controller
                     'errors'=>'Displaying hotel failed please try again'
                 ]
             ], 500);
+      }
+
+    }
 
     //create a new hotel
     public function createHotel(Request $request)
