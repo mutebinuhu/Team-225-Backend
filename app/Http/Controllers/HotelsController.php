@@ -50,9 +50,6 @@ class HotelsController extends Controller
                     'errors'=>'Displaying hotel failed please try again'
                 ]
             ], 500);
-      }
-    }
-
 
     //create a new hotel
     public function createHotel(Request $request)
@@ -74,8 +71,7 @@ class HotelsController extends Controller
                 ]
             ]);
          };
-
-            $formdata = array(
+         $formdata = array(
             'hotel_name'=>$request->hotel_name,
             'description'=>$request->description,
             'price'=>$request->price
@@ -166,7 +162,9 @@ class HotelsController extends Controller
                 ]
             ], 500);
         }
+         
     }
+ 
     
 
 }
