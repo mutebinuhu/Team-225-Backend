@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::delete('hotels/{id}','API\HotelsController@deleteHotel');
 });
 
+//Flights Search route
+Route::get('/flights', 'API\FlightsController@getFlights');
+
 // Documentation
 Route::get('/', 'API\DocumentationController@index');
 
