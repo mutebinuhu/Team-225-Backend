@@ -90,6 +90,9 @@ class HotelsController extends Controller
 
         $hotel = Hotel::create($formdata);
 
+        $imageName = time().'.'.validated()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
+
         return response()->json([
             'success' => true,
             'data' => [
@@ -183,14 +186,15 @@ class HotelsController extends Controller
 
     private function validator(Request $request) {
 
-        return Validator::make($request->only(['hotel_name', 'description', 'price', 'address', 'district', 'contact', 'email']), [
+        return Validator::make($request->only(['hotel_name', 'description', 'price', 'address', 'district', 'contact', 'email', 'attachment']), [
             'hotel_name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'email' => 'email',
             'district' => 'required',
             'address' => 'required',
-            'contact' => 'min:10'
+            'contact' => 'min:10',
+            'attachment' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
 
     }

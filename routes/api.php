@@ -31,13 +31,13 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
 });
 
 //hotels crud routes
-Route::group(['middleware' => 'auth:api'], function() {
+//Route::group(['middleware' => 'auth:api'], function() {
     Route::get('hotels', 'API\HotelsController@getAllHotels');
 	Route::get('hotels/{id}', 'API\HotelsController@getHotel');
 	Route::post('hotels', 'API\HotelsController@createHotel');
 	Route::put('hotels/{id}', 'API\HotelsController@updateHotel');
 	Route::delete('hotels/{id}','API\HotelsController@deleteHotel');
-});
+//});
 
 // Documentation
 Route::get('/', 'API\DocumentationController@index');
