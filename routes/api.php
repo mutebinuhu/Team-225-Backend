@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/hotels/add-images/{hotel}', 'API\ImageController@addHotelImages');
 });
 
+//Flights Search route
+Route::get('/flights', 'API\FlightsController@getFlights');
+
 // Documentation
 Route::get('/', 'API\DocumentationController@index');
 
