@@ -83,7 +83,7 @@ class HotelsController extends Controller
                     'message' => 'failed to create hotel',
                     'errors' => $validatedData->errors()
                 ]
-            ]);
+                ], 400);
          };
 
          $formdata = $validatedData->validated();
@@ -125,12 +125,12 @@ class HotelsController extends Controller
                         'message' => 'failed to update hotel',
                         'errors' => $validatedData->errors()
                     ]
-                ]);
+                    ], 400);
             }
 
             $hotel->hotel_name = $request->get('hotel_name');
             $hotel->description = $request->get('description');
-            $hotel->price = $request->get('price');
+            $hotel->average_price = $request->get('average_price');
             $hotel->address = $request->get('address');
             $hotel->email = $request->get('email');
             $hotel->district = $request->get('district');
@@ -183,10 +183,10 @@ class HotelsController extends Controller
 
     private function validator(Request $request) {
 
-        return Validator::make($request->only(['hotel_name', 'description', 'price', 'address', 'district', 'contact', 'email']), [
+        return Validator::make($request->only(['hotel_name', 'description', 'average_price', 'address', 'district', 'contact', 'email']), [
             'hotel_name' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric',
+            'average_price' => 'required|numeric',
             'email' => 'email',
             'district' => 'required',
             'address' => 'required',
