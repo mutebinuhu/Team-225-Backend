@@ -79,17 +79,14 @@ Optional params: "web", "number_of_rooms"
             "id": "id",
             "hotel_name": "hotel_name",
             "description": "description",
-<<<<<<< HEAD
             "price": "price",
             "district": "district",
             "email": "email",
-=======
             "average_price": "Average price for a room in the hotel",
             "district": "district",
             "email": "email",
             "web": "web address",
             "number_of_rooms": "Total number of rooms in the hotel",
->>>>>>> develop
             "address": "address",
             "contact": "contact",
             "created_at": "created_at",
