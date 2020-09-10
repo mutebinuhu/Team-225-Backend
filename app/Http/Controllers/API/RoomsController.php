@@ -8,4 +8,7 @@ use App\Room;
 class RoomsController extends Controller
 {
     //
+    public function addRoomsToHotels(Request $request, $id){
+    	
+    }
 }

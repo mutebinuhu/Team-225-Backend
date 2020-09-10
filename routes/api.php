@@ -36,8 +36,16 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
 	Route::get('hotels/{id}', 'API\HotelsController@getHotel');
 	Route::post('hotels', 'API\HotelsController@createHotel');
 	Route::put('hotels/{id}', 'API\HotelsController@updateHotel');
+<<<<<<< HEAD
 	Route::delete('hotels/{id}','API\HotelsController@deleteHotel');
 //});
+=======
+    Route::delete('hotels/{id}','API\HotelsController@deleteHotel');
+    
+    // Images operations
+    Route::post('/hotels/add-images/{hotel}', 'API\ImageController@addHotelImages');
+});
+>>>>>>> develop
 
 // Documentation
 Route::get('/', 'API\DocumentationController@index');
