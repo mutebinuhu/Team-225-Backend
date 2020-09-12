@@ -60,12 +60,9 @@
 <code>
 url: https://zurri-booking.herokuapp.com/api/hotels/
 method: POST
-<<<<<<< HEAD
-Form param:"hotel_name", "description", "price", "district", "email", "address", "contact"
-=======
 Form param:"hotel_name", "description", "average_price", "district", "email", "address", "contact", "web", "number_of_rooms"
 Optional params: "web", "number_of_rooms"
->>>>>>> develop
+
 </code>
 </pre>
 <p>Response</p>
@@ -117,35 +114,30 @@ param:
             "id": "hotel_id",
             "hotel_name": "hotel name",
             "description": "hotel description",
-<<<<<<< HEAD
+
             "price": "price",
             "district": "district",
             "email": "email",
-=======
+
             "average_price": "Average price for a room in the hotel",
             "district": "district",
             "email": "email",
             "web": "web address",
             "number_of_rooms": "Total number of rooms in the hotel",
->>>>>>> develop
             "address": "address",
             "contact": "contact",
             "created_at": "created_at",
             "updated_at": "updated_at"
         },
-<<<<<<< HEAD
-=======
-<pre>
->>>>>>> develop
+
          "count": "number of hotels"
 ]
+}
+</pre>
 </code>
 </pre>
 <h4>3.Show a single hotel </h4>
-<<<<<<< HEAD
 <pre>
-=======
->>>>>>> develop
 <code>
 url: https://zurri-booking.herokuapp.com/api/hotels/{id}
 method: GET
@@ -161,17 +153,15 @@ param:id
         "id": 7,
         "hotel_name": "hotel_name",
         "description": "description",
-<<<<<<< HEAD
         "price":  "price",
         "district": "district",
         "email": "email",
-=======
         "average_price": "Average price for a room in the hotel",
         "district": "district",
         "email": "email",
         "web": "web address",
         "number_of_rooms": "Total number of rooms in the hotel",
->>>>>>> develop
+
         "address": "address",
         "contact": "contact",
         "created_at": "created_at",
@@ -199,17 +189,14 @@ param:id
             "id": 7,
             "hotel_name": "hotel_name",
             "description": "description",
-<<<<<<< HEAD
             "price": "price",
             "district": "district",
             "email": "email",
-=======
             "average_price": "Average price for a room in the hotel",
             "district": "district",
             "email": "email",
             "web": "web address",
             "number_of_rooms": "Total number of rooms in the hotel",
->>>>>>> develop
             "address": "address",
             "contact": "contact",
             "created_at": "created_at",
@@ -238,17 +225,14 @@ param:id
             "id": "id",
             "hotel_name": "hotel_name",
             "description": "description",
-<<<<<<< HEAD
             "price": "price",
             "district": "district",
             "email": "email",
-=======
             "average_price": "Average price for a room in the hotel",
             "district": "district",
             "email": "email",
             "web": "web address",
             "number_of_rooms": "Total number of rooms in the hotel",
->>>>>>> develop
             "address": "address",
             "contact": "contact",
             "created_at": "created_at",
@@ -262,11 +246,9 @@ param:id
 </div>
 </section>
  </main>
-<<<<<<< HEAD
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js" integrity="sha512-tHQeqtcNWlZtEh8As/4MmZ5qpy0wj04svWFK7MIzLmUVIzaHXS8eod9OmHxyBL1UET5Rchvw7Ih4ZDv5JojZww==" crossorigin="anonymous"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </html>
-=======
 </x-app>
->>>>>>> develop
+
