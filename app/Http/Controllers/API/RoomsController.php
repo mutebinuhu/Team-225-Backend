@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomsController extends Controller
 {
-    //
+
     public function getAllRooms()
     {
        try {
@@ -180,3 +180,4 @@ class RoomsController extends Controller
         ]);   
     }
 }
+
