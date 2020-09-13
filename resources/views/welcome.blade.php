@@ -242,6 +242,165 @@ param:id
 }
 </code>
 </pre>
+<hr>
+<h3>Rooms API</h3>
+<p>We are going to use this Api while listing all Rooms, get a single room, add a room and also delete a room</p>
+<h4>6.Get all Rooms </h4>
+<pre>
+<code>
+url: https://zurri-booking.herokuapp.com/api/rooms/
+method: GET
+</code>
+</pre>
+<p>Response</p>
+<pre>
+<code>
+  {
+    "success": true,
+    "data": {
+        "rooms": [
+            {
+                "id": "id",
+                "hotel_id": "hotel_id",
+                "name": "roomname",
+                "description": "description",
+                "minimum_stay_night": "minimum_stay_night",
+                "price": "price",
+                "max_number_of_guests": "max_number_of_guests",
+                "created_at": "created_at",
+                "updated_at": "updated_at"
+            },
+        ],
+        "count": "totalrooms"
+    }
+}
+</code>
+</pre>
+<h4>7.Get  a single Room </h4>
+<pre>
+<code>
+url: https://zurri-booking.herokuapp.com/api/rooms/{id}
+method: GET
+param:id
+</code>
+</pre>
+<p>Response</p>
+<pre>
+<code>
+  {
+    "success": true,
+    "data": {
+        "rooms":
+            {
+                "id": "id",
+                "hotel_id": "hotel_id",
+                "name": "roomname",
+                "description": "description",
+                "minimum_stay_night": "minimum_stay_night",
+                "price": "price",
+                "max_number_of_guests": "max_number_of_guests",
+                "created_at": "created_at",
+                "updated_at": "updated_at"
+            }
+    }
+}
+</code>
+</pre>
+<h4>8.Add a single Room </h4>
+<p>Here we have used a one to many relationship where by we shall be adding a room to a particular hotel, the room will pick the hotel_id while adding it  </p>
+<pre>
+<code>
+url: https://zurri-booking.herokuapp.com/api/hotels/room/{hotel_id}
+method: POST
+param: hotel_id
+</code>
+</pre>
+<p>Response</p>
+<pre>
+<code>
+  {
+    "success": true,
+    "data": {
+        "message": "room added successfully",
+        "room": {
+            "hotel_id": "hotel_id",
+            "name": "name",
+            "description":  "description",
+            "price": "price",
+            "minimum_stay_night": "minimum_stay_night",
+            "max_number_of_guests": "max_number_of_guests",
+            "updated_at":  "updated_at",
+            "created_at": "created_at",
+            "id": "room_id"
+        }
+    }
+}
+
+
+</code>
+</pre>
+<h4>9. Update single Room </h4>
+<p>We have used a one to many relationship where by we shall be updating a room to a particular hotel, the room will pick the hotel_id while updating it  </p>
+<p> </p>
+<pre>
+<code>
+url: https://zurri-booking.herokuapp.com/api/hotels/room/{hotel_id}
+method: PUT
+param: hotel_id
+</code>
+</pre>
+<p>Response</p>
+<pre>
+<code>
+  {
+    "success": true,
+    "data": {
+        "message": "Room updated successfully",
+        "room": {
+            "hotel_id": "hotel_id",
+            "name": "name",
+            "description":  "description",
+            "price": "price",
+            "minimum_stay_night": "minimum_stay_night",
+            "max_number_of_guests": "max_number_of_guests",
+            "updated_at":  "updated_at",
+            "created_at": "created_at",
+            "id": "room_id"
+        }
+    }
+}
+</code>
+</pre>
+<h4>10.Delete single Room </h4>
+<pre>
+<code>
+url: https://zurri-booking.herokuapp.com/api/rooms/{id}
+method: DELETE
+param: room_id
+</code>
+</pre>
+<p>Response</p>
+<pre>
+<code>
+  {
+    "success": true,
+    "data": {
+        "message": "Room successfully deleted",
+        "room": {
+            "id": "id",
+            "hotel_id": "hotel_id",
+            "name": "name",
+            "description":  "description",
+            "price": "price",
+            "minimum_stay_night": "minimum_stay_night",
+            "max_number_of_guests": "max_number_of_guests",
+            "created_at": "created_at",
+            "updated_at":  "updated_at",
+        }
+    }
+}
+</code>
+</pre>
 </div>
 </div>
 </section>

@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
     Route::get('/logout', 'API\LogoutController@logout');
 });
 
-//Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'auth:api'], function() {
 //hotels crud routes
     Route::get('hotels', 'API\HotelsController@getAllHotels');
 	Route::get('hotels/{id}', 'API\HotelsController@getHotel');
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function() {
     Route::get('rooms/{id}', 'API\RoomsController@getRoom');
     Route::delete('rooms/{id}', 'API\RoomsController@deleteRoom');
     Route::put('/hotels/room/{room}', 'API\RoomsController@UpdateRoom');
-//});
+});
     
 
 //Flights Search route

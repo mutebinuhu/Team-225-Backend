@@ -154,8 +154,8 @@ class RoomsController extends Controller
              return response()->json([
                 'success' => true,
                 'data' => [
-                    'message' => 'room successfully deleted',
-                    'hotel' => $room
+                    'message' => 'Room successfully deleted',
+                    'room' => $room
                 ]
             ]);
         } catch (\Exception $e) {
